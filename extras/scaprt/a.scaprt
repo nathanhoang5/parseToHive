@@ -1,0 +1,28 @@
+import scala.util.matching.Regex
+import scala.io.Source
+import scala.collection.mutable.ArrayBuffer
+import org.apache.spark.sql.types.{ StructType, StructField, StringType, IntegerType, DoubleType };
+import org.apache.spark.SparkConf
+import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import org.apache.spark.sql.{ Row, SaveMode, SparkSession }
+import org.apache.spark.sql.types.{ DoubleType, StringType, StructField, StructType }
+import org.apache.spark.sql.hive.HiveContext;
+
+object TarToDataframe {
+
+  def main(args: Array[String]) = {
+    
+    //Read headers and store in array
+    val lines = Source.fromFile("/home/nhoang/parseLogfile/extras/schema.csv").getLines
+    val first = lines.take(1).toList
+    val headers = first(0).split(",")
+
+    //Start the Spark context
+    val spark: SparkSession = SparkSession.builder.master("local").enableHiveSupport.getOrCreate
+    val sc = spark.sparkContext
+    import spark.sqlContext.implicits._
+    import spark.sql
+    //Build schema
+	
+	

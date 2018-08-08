@@ -1,0 +1,2 @@
+
+val schema = dfSchema(List("specTest", "result1", "result2", "result3", "result4"))

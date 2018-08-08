@@ -1,0 +1,13 @@
+
+  def dfSchema(columnNames: List[String]): StructType =
+    StructType(
+      Seq(
+        StructField(name = "specTest", dataType = StringType, nullable = false),
+        StructField(name = "result1", dataType = IntegerType, nullable = false),
+        StructField(name = "result2", dataType = IntegerType, nullable = false),
+        StructField(name = "result3", dataType = DoubleType, nullable = false),
+        StructField(name = "result4", dataType = DoubleType, nullable = false)))
+
+  def row(line: List[String]): Row = Row(
+    line(0), line(1).toInt, line(2).toInt, line(3).toDouble, line(4).toDouble) 
+}
